@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Transwisata Prima Aviation - Load Sheet Helicopter A109S Grand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            overflow: hidden;
+        }
+        .table-header {
+            background-color: #111827; /* Dark Gray */
+            color: white;
+            font-weight: 600;
+        }
+        .table-footer {
+            background-color: #e5e7eb; /* Light Gray */
+            font-weight: 700;
+        }
+        input, select {
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            width: 100%;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3b82f6; /* Blue */
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+        }
+        .status-ok {
+            background-color: #10b981; /* Green */
+            color: white;
+        }
+        .status-no-go {
+            background-color: #ef4444; /* Red */
+            color: white;
+        }
+        .status-in {
+            background-color: #3b82f6; /* Blue */
+            color: white;
+        }
+        .status-out {
+            background-color: #f97316; /* Orange */
+            color: white;
+        }
+        .summary-value {
+            font-weight: 700;
+            color: #1e40af; /* Dark Blue */
+        }
+        .fuel-calc-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+        .fuel-calc-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            padding-top: 0.5rem; /* To align with inputs */
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-2xl md:text-4xl font-bold text-gray-800">PT. TRANSWISATA PRIMA AVIATION</h1>
+            <h2 class="text-lg md:text-xl font-semibold text-gray-600 mt-1">LOAD & TRIM SHEET - HELICOPTER A109S GRAND</h2>
+            <p class="text-sm text-gray-500 mt-2">Made by Capt. Ramdan</p>
+        </div>
+
+        <!-- Aircraft Details Card -->
+        <div class="card mb-6">
+            <div class="p-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="md:col-span-3 grid grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Aircraft Type</label>
+                        <p class="font-semibold text-gray-800">A109S Grand</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Registration</label>
+                        <p class="font-semibold text-gray-800">PK-TWZ</p>
+                    </div>
+                    <div>
+                        <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <label for="route_from" class="block text-sm font-medium text-gray-700">Route</label>
+                    <div class="flex items-center space-x-2">
+                        <input type="text" id="route_from" name="route_from" placeholder="From">
+                        <span class="text-gray-500">to</span>
+                        <input type="text" id="route_to" name="route_to" placeholder="To">
+                    </div>
+                </div>
+                 <div class="md:col-span-1">
+                    <label for="pic_name" class="block text-sm font-medium text-gray-700">PIC Name</label>
+                    <select id="pic_name" name="pic_name">
+                        <option>Capt. S. Teddy P/ATPL H 5753</option>
+                        <option>Capt. M. Ramdani M /ATPL H 20-0007</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1">
+                    <label for="sic_name" class="block text-sm font-medium text-gray-700">SIC Name</label>
+                    <select id="sic_name" name="sic_name">
+                        <option>Capt. S. Teddy P/ATPL H 5753</option>
+                        <option>Capt. M. Ramdani M /ATPL H 20-0007</option>
+                        <option>Sigit Hardadi</option>
+                        <option>Bayu Nugroho</option>
+                        <option>Wahyudi Suseno</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1">
+                    <label for="total_pob" class="block text-sm font-medium text-gray-700">Total POB</label>
+                    <select id="total_pob" name="total_pob">
+                        <option>1</option>
+                        <option selected>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Main Calculation Tables -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Aircraft Weight & Configuration -->
+                <div class="card">
+                    <h3 class="p-4 text-lg font-semibold border-b">1. Aircraft Weight & Configuration</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3">Item</th>
+                                    <th class="p-3 text-right">Weight (kg)</th>
+                                    <th class="p-3 text-right">Arm (m)</th>
+                                    <th class="p-3 text-right">Moment (kg-m)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="p-3 font-medium">Basic Empty Weight (BEW)</td>
+                                    <td class="p-3"><input type="number" class="text-right" id="bew_weight" value="2223.1" step="0.1"></td>
+                                    <td class="p-3"><input type="number" class="text-right" id="bew_arm" value="3.474" step="0.001"></td>
+                                    <td class="p-3 text-right" id="bew_moment"></td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="p-3 font-medium">PIC</td>
+                                    <td class="p-3"><input type="number" class="text-right" id="pic_config_weight" value="75"></td>
+                                    <td class="p-3 text-right">1.385</td>
+                                    <td class="p-3 text-right" id="pic_config_moment"></td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="p-3 font-medium">SIC</td>
+                                    <td class="p-3"><input type="number" class="text-right" id="sic_config_weight" value="75"></td>
+                                    <td class="p-3 text-right">1.385</td>
+                                    <td class="p-3 text-right" id="sic_config_moment"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="table-footer">
+                                <tr>
+                                    <td class="p-3">Operating Weight (OW)</td>
+                                    <td class="p-3 text-right" id="oew_weight"></td>
+                                    <td class="p-3 text-right"></td>
+                                    <td class="p-3 text-right" id="oew_moment"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Payload Data -->
+                <div class="card">
+                    <h3 class="p-4 text-lg font-semibold border-b">2. Payload Data</h3>
+                     <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="p-3">Item</th>
+                                    <th class="p-3 text-right">Weight (kg)</th>
+                                    <th class="p-3 text-right">Arm (m)</th>
+                                    <th class="p-3 text-right">Moment (kg-m)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payload-table">
+                                <!-- Rows will be inserted by JS -->
+                            </tbody>
+                             <tfoot class="table-footer">
+                                <tr>
+                                    <td class="p-3">Dry Weight</td>
+                                    <td class="p-3 text-right" id="payload_total_weight"></td>
+                                    <td class="p-3 text-right"></td>
+                                    <td class="p-3 text-right" id="payload_total_moment"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- New Fuel Calculation Card -->
+                <div class="card">
+                    <h3 class="p-4 text-lg font-semibold border-b">3. Fuel Calculation</h3>
+                    <div class="p-4 grid grid-cols-2 md:grid-cols-5 gap-4 items-end">
+                        <!-- Inputs -->
+                        <div>
+                            <label for="trip_time_hours" class="fuel-calc-label">Trip Time</label>
+                            <div class="flex space-x-2">
+                                <input type="number" id="trip_time_hours" value="1" placeholder="Hrs">
+                                <input type="number" id="trip_time_minutes" value="0" placeholder="Min">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="fuel_onboard" class="fuel-calc-label">Fuel Onboard (Kg)</label>
+                            <input type="number" id="fuel_onboard" value="600">
+                        </div>
+                        <div>
+                            <label for="fuel_consumption" class="fuel-calc-label">Fuel Cons. (Kg/Hr)</label>
+                            <input type="number" id="fuel_consumption" value="230">
+                        </div>
+                        <div>
+                            <label for="air_speed" class="fuel-calc-label">Air Speed (Kts)</label>
+                            <input type="number" id="air_speed" value="145">
+                        </div>
+                        <div>
+                            <label class="fuel-calc-label">Endurance</label>
+                            <p class="fuel-calc-value" id="endurance">0 Hrs 0 Min</p>
+                        </div>
+
+
+                        <!-- Calculations -->
+                        <div class="col-span-2 md:col-span-5 border-t pt-4 mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+                             <div>
+                                <p class="fuel-calc-label">Fuel Trip</p>
+                                <p class="fuel-calc-value" id="fuel_trip">0 Kg</p>
+                            </div>
+                            <div>
+                                <p class="fuel-calc-label">Fuel Reserve (20 min)</p>
+                                <p class="fuel-calc-value" id="fuel_reserve">0 Kg</p>
+                            </div>
+                            <div>
+                                <p class="fuel-calc-label">Fuel Contingency (10%)</p>
+                                <p class="fuel-calc-value" id="fuel_contingency">0 Kg</p>
+                            </div>
+                             <div>
+                                <p class="fuel-calc-label">Taxi & Start (10 min)</p>
+                                <p class="fuel-calc-value" id="fuel_taxi">0 Kg</p>
+                            </div>
+                            <div class="col-span-2 md:col-span-4 mt-2 pt-2 border-t">
+                                <p class="text-lg font-bold text-blue-700 text-center">Total Fuel Required</p>
+                                <p class="text-2xl font-bold text-blue-700 text-center" id="total_fuel_required">0 Kg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary & Limitations -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Weight & Balance Summary -->
+                <div class="card">
+                    <h3 class="p-4 text-lg font-semibold border-b">4. Weight & Balance Summary</h3>
+                    <div class="p-4 space-y-4">
+                        <div class="p-3 rounded-lg bg-gray-50">
+                            <p class="text-sm font-medium text-gray-500">Zero Fuel Weight (ZFW)</p>
+                            <div class="flex justify-between items-baseline mt-1">
+                                <span class="summary-value text-xl" id="summary_zfw_weight">0 kg</span>
+                                <span class="text-sm text-gray-600" id="summary_zfw_cg">C.G. @ 0.000 m</span>
+                            </div>
+                        </div>
+                         <div class="p-3 rounded-lg bg-blue-50">
+                            <p class="text-sm font-medium text-gray-500">Take-off Weight (TOW)</p>
+                            <div class="flex justify-between items-baseline mt-1">
+                                <span class="summary-value text-xl" id="summary_tow_weight">0 kg</span>
+                                <span class="text-sm text-gray-600" id="summary_tow_cg">C.G. @ 0.000 m</span>
+                            </div>
+                        </div>
+                         <div class="p-3 rounded-lg bg-green-50">
+                            <p class="text-sm font-medium text-gray-500">Landing Weight (LW)</p>
+                            <div class="flex justify-between items-baseline mt-1">
+                                <span class="summary-value text-xl" id="summary_lw_weight">0 kg</span>
+                                <span class="text-sm text-gray-600" id="summary_lw_cg">C.G. @ 0.000 m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Limitations Check -->
+                <div class="card">
+                    <h3 class="p-4 text-lg font-semibold border-b">5. Limitations Check</h3>
+                    <div class="p-4 space-y-3">
+                        <!-- TOW -->
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Take-off Weight</span>
+                            <div>
+                                <span id="check_tow_value">0</span> / 3175 kg
+                                <span id="check_tow_status" class="ml-2 px-2 py-1 text-xs font-bold rounded-full"></span>
+                            </div>
+                        </div>
+                         <!-- LW -->
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Landing Weight</span>
+                            <div>
+                                <span id="check_lw_value">0</span> / 3175 kg
+                                <span id="check_lw_status" class="ml-2 px-2 py-1 text-xs font-bold rounded-full"></span>
+                            </div>
+                        </div>
+                        <!-- Baggage -->
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Baggage Weight</span>
+                            <div>
+                                <span id="check_baggage_value">0</span> / 150 kg
+                                <span id="check_baggage_status" class="ml-2 px-2 py-1 text-xs font-bold rounded-full"></span>
+                            </div>
+                        </div>
+                         <!-- C.G. Check -->
+                        <div class="pt-3 border-t mt-3">
+                             <p class="text-center font-medium mb-2">Center of Gravity</p>
+                             <div class="flex justify-between items-center">
+                                 <span>Take-off C.G.</span>
+                                 <div>
+                                     <span id="check_cg_tow_value">0.000</span> m
+                                     <span id="check_cg_tow_status" class="ml-2 px-2 py-1 text-xs font-bold rounded-full"></span>
+                                 </div>
+                             </div>
+                             <div class="flex justify-between items-center mt-2">
+                                 <span>Landing C.G.</span>
+                                 <div>
+                                     <span id="check_cg_lw_value">0.000</span> m
+                                     <span id="check_cg_lw_status" class="ml-2 px-2 py-1 text-xs font-bold rounded-full"></span>
+                                 </div>
+                             </div>
+                             <p class="text-xs text-center text-gray-500 mt-2">(Limits approx. 4.72m - 4.98m)</p>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Signature -->
+                <div class="card">
+                     <div class="p-4">
+                        <p class="text-xs text-gray-500 italic mb-4">
+                            <strong>Disclaimer:</strong> The Pilot in Command is solely responsible for ensuring the accuracy of all calculations and confirming that the aircraft is operated within the weight and balance limits prescribed in the approved Aircraft Flight Manual (AFM).
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Prepared by</label>
+                                <input type="text" placeholder="Your Name" class="mt-1">
+                            </div>
+                             <div>
+                                <label class="block text-sm font-medium text-gray-700">Accepted by (PIC)</label>
+                                <input type="text" placeholder="PIC Signature" class="mt-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- DATA ---
+            const payloadItems = [
+                { id: 'pax1', label: 'Pax. Seat 1 forward left', arm: 2.200, weight: 0 },
+                { id: 'pax2', label: 'Pax. Seat 2 center', arm: 2.200, weight: 0 },
+                { id: 'pax3', label: 'Pax. Seat 3 forward right', arm: 2.200, weight: 0 },
+                { id: 'pax4', label: 'Pax. Seat 4 aft left', arm: 3.400, weight: 0 },
+                { id: 'pax5', label: 'Pax. Seat 5 aft', arm: 3.400, weight: 0 },
+                { id: 'pax6', label: 'Pax. Seat 6 aft right', arm: 3.400, weight: 0 },
+                { id: 'bag1', label: 'Baggage zone 1', arm: 4.880, weight: 0 },
+                { id: 'bag2', label: 'Baggage zone 2', arm: 5.240, weight: 0 },
+                { id: 'bag3', label: 'Baggage zone 3', arm: 5.570, weight: 0 },
+                { id: 'bag4', label: 'Baggage zone 4', arm: 6.008, weight: 0 },
+                { id: 'bag5', label: 'Baggage zone 5', arm: 6.441, weight: 0 },
+            ];
+
+            const limits = {
+                maxTOW: 3175,
+                maxLW: 3175,
+                maxBaggage: 150,
+                cgFwd: 4.72,
+                cgAft: 4.98
+            };
+
+            const fuelArm = 4.800;
+
+            // --- UI SETUP ---
+            function createPayloadRows() {
+                const tableBody = document.getElementById('payload-table');
+                payloadItems.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.className = 'border-b';
+                    row.innerHTML = `
+                        <td class="p-3 font-medium">${item.label}</td>
+                        <td class="p-2"><input type="number" id="${item.id}_weight" class="weight-input text-right" value="${item.weight}"></td>
+                        <td class="p-3 text-right">${item.arm.toFixed(3)}</td>
+                        <td class="p-3 text-right" id="${item.id}_moment"></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // --- CALCULATION LOGIC ---
+            function calculateAll() {
+                // 1. OEW Calculation
+                const bewWeight = parseFloat(document.getElementById('bew_weight').value) || 0;
+                const bewArm = parseFloat(document.getElementById('bew_arm').value) || 0;
+                const bewMoment = bewWeight * bewArm;
+                document.getElementById('bew_moment').textContent = bewMoment.toFixed(3);
+
+                const picConfigWeight = parseFloat(document.getElementById('pic_config_weight').value) || 0;
+                const picConfigMoment = picConfigWeight * 1.385;
+                document.getElementById('pic_config_moment').textContent = picConfigMoment.toFixed(3);
+
+                const sicConfigWeight = parseFloat(document.getElementById('sic_config_weight').value) || 0;
+                const sicConfigMoment = sicConfigWeight * 1.385;
+                document.getElementById('sic_config_moment').textContent = sicConfigMoment.toFixed(3);
+
+                const oewWeight = bewWeight + picConfigWeight + sicConfigWeight;
+                const oewMoment = bewMoment + picConfigMoment + sicConfigMoment;
+                document.getElementById('oew_weight').textContent = oewWeight.toFixed(2);
+                document.getElementById('oew_moment').textContent = oewMoment.toFixed(3);
+
+                // 2. Payload Calculation
+                let payloadTotalWeight = 0;
+                let payloadTotalMoment = 0;
+                let baggageTotalWeight = 0;
+
+                payloadItems.forEach(item => {
+                    const weight = parseFloat(document.getElementById(`${item.id}_weight`).value) || 0;
+                    const moment = weight * item.arm;
+                    document.getElementById(`${item.id}_moment`).textContent = moment.toFixed(3);
+                    payloadTotalWeight += weight;
+                    payloadTotalMoment += moment;
+                    if (item.id.startsWith('bag')) {
+                        baggageTotalWeight += weight;
+                    }
+                });
+                document.getElementById('payload_total_weight').textContent = payloadTotalWeight.toFixed(2);
+                document.getElementById('payload_total_moment').textContent = payloadTotalMoment.toFixed(3);
+
+                // 3. New Fuel Calculation
+                const tripHours = parseFloat(document.getElementById('trip_time_hours').value) || 0;
+                const tripMinutes = parseFloat(document.getElementById('trip_time_minutes').value) || 0;
+                const totalTripMinutes = (tripHours * 60) + tripMinutes;
+                
+                const fuelConsumptionKgPerMin = 3.9;
+                
+                const fuelTrip = totalTripMinutes * fuelConsumptionKgPerMin;
+                const fuelReserve = 20 * fuelConsumptionKgPerMin;
+                const fuelContingency = fuelTrip * 0.10;
+                const fuelTaxi = 10 * fuelConsumptionKgPerMin;
+                const totalFuelRequired = fuelTrip + fuelReserve + fuelContingency + fuelTaxi;
+
+                document.getElementById('fuel_trip').textContent = `${fuelTrip.toFixed(1)} Kg`;
+                document.getElementById('fuel_reserve').textContent = `${fuelReserve.toFixed(1)} Kg`;
+                document.getElementById('fuel_contingency').textContent = `${fuelContingency.toFixed(1)} Kg`;
+                document.getElementById('fuel_taxi').textContent = `${fuelTaxi.toFixed(1)} Kg`;
+                document.getElementById('total_fuel_required').textContent = `${totalFuelRequired.toFixed(1)} Kg`;
+
+                const fuelOnboard = parseFloat(document.getElementById('fuel_onboard').value) || 0;
+                const fuelConsumption = parseFloat(document.getElementById('fuel_consumption').value) || 0;
+
+                let enduranceHours = 0;
+                let enduranceMinutes = 0;
+                if (fuelConsumption > 0) {
+                    const totalEnduranceHours = fuelOnboard / fuelConsumption;
+                    enduranceHours = Math.floor(totalEnduranceHours);
+                    enduranceMinutes = Math.round((totalEnduranceHours - enduranceHours) * 60);
+                }
+                document.getElementById('endurance').textContent = `${enduranceHours} Hrs ${enduranceMinutes} Min`;
+
+
+                // 4. ZFW Calculation
+                const zfwWeight = oewWeight + payloadTotalWeight;
+                const zfwMoment = oewMoment + payloadTotalMoment;
+                const zfwCg = zfwWeight > 0 ? zfwMoment / zfwWeight : 0;
+
+                // 5. TOW & LW Calculation using new fuel values
+                const takeoffFuelWeight = totalFuelRequired;
+                const takeoffFuelMoment = takeoffFuelWeight * fuelArm;
+                
+                const tripFuelBurnWeight = fuelTrip;
+                const tripFuelBurnMoment = tripFuelBurnWeight * fuelArm;
+
+                const towWeight = zfwWeight + takeoffFuelWeight;
+                const towMoment = zfwMoment + takeoffFuelMoment;
+                const towCg = towWeight > 0 ? towMoment / towWeight : 0;
+
+                const lwWeight = towWeight - tripFuelBurnWeight;
+                const lwMoment = towMoment - tripFuelBurnMoment;
+                const lwCg = lwWeight > 0 ? lwMoment / lwWeight : 0;
+
+                // --- UPDATE UI ---
+                // Summary
+                document.getElementById('summary_zfw_weight').textContent = `${zfwWeight.toFixed(2)} kg`;
+                document.getElementById('summary_zfw_cg').textContent = `C.G. @ ${zfwCg.toFixed(3)} m`;
+                document.getElementById('summary_tow_weight').textContent = `${towWeight.toFixed(2)} kg`;
+                document.getElementById('summary_tow_cg').textContent = `C.G. @ ${towCg.toFixed(3)} m`;
+                document.getElementById('summary_lw_weight').textContent = `${lwWeight.toFixed(2)} kg`;
+                document.getElementById('summary_lw_cg').textContent = `C.G. @ ${lwCg.toFixed(3)} m`;
+
+                // Limitations Check
+                updateStatus('check_tow', towWeight, limits.maxTOW);
+                updateStatus('check_lw', lwWeight, limits.maxLW);
+                updateStatus('check_baggage', baggageTotalWeight, limits.maxBaggage);
+                updateCgStatus('check_cg_tow', towCg, limits.cgFwd, limits.cgAft);
+                updateCgStatus('check_cg_lw', lwCg, limits.cgFwd, limits.cgAft);
+            }
+            
+            function updateStatus(prefix, value, limit) {
+                const valueEl = document.getElementById(`${prefix}_value`);
+                const statusEl = document.getElementById(`${prefix}_status`);
+                if (valueEl) valueEl.textContent = value.toFixed(0);
+                
+                if (value > limit) {
+                    statusEl.textContent = 'NO GO';
+                    statusEl.className = 'ml-2 px-2 py-1 text-xs font-bold rounded-full status-no-go';
+                } else {
+                    statusEl.textContent = 'OK';
+                    statusEl.className = 'ml-2 px-2 py-1 text-xs font-bold rounded-full status-ok';
+                }
+            }
+
+            function updateCgStatus(prefix, value, fwdLimit, aftLimit) {
+                const valueEl = document.getElementById(`${prefix}_value`);
+                const statusEl = document.getElementById(`${prefix}_status`);
+                valueEl.textContent = value.toFixed(3);
+
+                if (value >= fwdLimit && value <= aftLimit) {
+                    statusEl.textContent = 'IN';
+                    statusEl.className = 'ml-2 px-2 py-1 text-xs font-bold rounded-full status-in';
+                } else {
+                    statusEl.textContent = 'OUT';
+                    statusEl.className = 'ml-2 px-2 py-1 text-xs font-bold rounded-full status-out';
+                }
+            }
+
+            // --- EVENT LISTENERS ---
+            function addEventListeners() {
+                const inputs = document.querySelectorAll('input[type="number"], input[type="text"], select');
+                inputs.forEach(input => {
+                    if (input.type === 'number') {
+                        // Add focus/blur logic for number inputs
+                        input.addEventListener('focus', function() {
+                            // Store the current value as a data attribute before clearing
+                            this.setAttribute('data-original-value', this.value);
+                            this.value = '';
+                        });
+
+                        input.addEventListener('blur', function() {
+                            // If the input is empty after blurring, restore the original value
+                            if (this.value.trim() === '') {
+                                this.value = this.getAttribute('data-original-value');
+                            }
+                            // Always recalculate on blur to catch changes
+                            calculateAll();
+                        });
+                    }
+                    
+                    // Add real-time calculation for all input types
+                    input.addEventListener('input', calculateAll);
+                    // Add change event for selects and other inputs that need it
+                    input.addEventListener('change', calculateAll);
+                });
+            }
+
+
+            // --- INITIALIZATION ---
+            createPayloadRows();
+            addEventListeners();
+            calculateAll(); // Initial calculation on page load
+             // Set today's date
+            document.getElementById('date').valueAsDate = new Date();
+        });
+    </script>
+</body>
+</html>
