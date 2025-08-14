@@ -70,6 +70,38 @@
             padding-top: 0.5rem; /* To align with inputs */
             padding-bottom: 0.5rem;
         }
+        .seat {
+            border: 2px solid #6b7280;
+            border-radius: 0.5rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9fafb;
+        }
+        .seat-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+        .seat input {
+            width: 60px;
+            text-align: center;
+            font-size: 0.875rem;
+            padding: 0.25rem;
+        }
+        .cabin-layout {
+            border: 2px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            background-color: #f9fafb;
+            background-image: repeating-linear-gradient(45deg, #e5e7eb 25%, transparent 25%, transparent 75%, #e5e7eb 75%, #e5e7eb), repeating-linear-gradient(45deg, #e5e7eb 25%, #f9fafb 25%, #f9fafb 75%, #e5e7eb 75%, #e5e7eb);
+            background-position: 0 0, 5px 5px;
+            background-size: 10px 10px;
+
+        }
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -78,7 +110,7 @@
         <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-2xl md:text-4xl font-bold text-gray-800">PT. TRANSWISATA PRIMA AVIATION</h1>
-            <h2 class="text-lg md:text-xl font-semibold text-gray-600 mt-1">LOAD & TRIM SHEET - HELICOPTER A109S GRAND</h2>
+            <h2 class="text-lg md:text-xl font-semibold text-gray-600 mt-1">LOAD SHEET - HELICOPTER A109S GRAND</h2>
             <p class="text-sm text-gray-500 mt-2">Made by Capt. Ramdan</p>
         </div>
 
@@ -185,6 +217,41 @@
                                 </tr>
                             </tfoot>
                         </table>
+                    </div>
+                </div>
+
+                <!-- Seat Layout Card -->
+                <div class="card">
+                    <h3 class="p-4 text-lg font-semibold border-b">Seat & Baggage Layout</h3>
+                    <div class="p-4 cabin-layout flex flex-col items-center space-y-4">
+                        <!-- Cockpit -->
+                        <div class="w-full flex justify-around">
+                            <div class="seat bg-blue-100 border-blue-400"><span class="seat-label">SIC</span></div>
+                            <div class="seat bg-blue-100 border-blue-400"><span class="seat-label">PIC</span></div>
+                        </div>
+                        <!-- Rear-facing Seats -->
+                        <div class="w-full flex justify-around">
+                            <div class="seat" id="layout_pax3_seat"><span class="seat-label">Pax 3</span><input type="number" id="layout_pax3_weight" value="0"></div>
+                            <div class="seat" id="layout_pax2_seat"><span class="seat-label">Pax 2</span><input type="number" id="layout_pax2_weight" value="0"></div>
+                            <div class="seat" id="layout_pax1_seat"><span class="seat-label">Pax 1</span><input type="number" id="layout_pax1_weight" value="0"></div>
+                        </div>
+                        <!-- Forward-facing Seats -->
+                        <div class="w-full flex justify-around">
+                             <div class="seat" id="layout_pax6_seat"><span class="seat-label">Pax 6</span><input type="number" id="layout_pax6_weight" value="0"></div>
+                             <div class="seat" id="layout_pax5_seat"><span class="seat-label">Pax 5</span><input type="number" id="layout_pax5_weight" value="0"></div>
+                             <div class="seat" id="layout_pax4_seat"><span class="seat-label">Pax 4</span><input type="number" id="layout_pax4_weight" value="0"></div>
+                        </div>
+                        <!-- Baggage -->
+                        <div class="w-full border-t-2 border-dashed border-gray-400 mt-4 pt-4 flex flex-col items-center">
+                            <span class="font-semibold mb-2">Baggage Area</span>
+                            <div class="flex space-x-2">
+                                <div class="seat !w-auto !h-auto p-2" id="layout_bag1_seat"><span class="seat-label">Zone 1</span><input type="number" id="layout_bag1_weight" value="0"></div>
+                                <div class="seat !w-auto !h-auto p-2" id="layout_bag2_seat"><span class="seat-label">Zone 2</span><input type="number" id="layout_bag2_weight" value="0"></div>
+                                <div class="seat !w-auto !h-auto p-2" id="layout_bag3_seat"><span class="seat-label">Zone 3</span><input type="number" id="layout_bag3_weight" value="0"></div>
+                                <div class="seat !w-auto !h-auto p-2" id="layout_bag4_seat"><span class="seat-label">Zone 4</span><input type="number" id="layout_bag4_weight" value="0"></div>
+                                <div class="seat !w-auto !h-auto p-2" id="layout_bag5_seat"><span class="seat-label">Zone 5</span><input type="number" id="layout_bag5_weight" value="0"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -390,6 +457,15 @@
                 { id: 'bag4', label: 'Baggage zone 4', arm: 6.008, weight: 0 },
                 { id: 'bag5', label: 'Baggage zone 5', arm: 6.441, weight: 0 },
             ];
+            
+            const layoutMap = {
+                'layout_pax1_weight': 'pax1_weight', 'layout_pax2_weight': 'pax2_weight',
+                'layout_pax3_weight': 'pax3_weight', 'layout_pax4_weight': 'pax4_weight',
+                'layout_pax5_weight': 'pax5_weight', 'layout_pax6_weight': 'pax6_weight',
+                'layout_bag1_weight': 'bag1_weight', 'layout_bag2_weight': 'bag2_weight',
+                'layout_bag3_weight': 'bag3_weight', 'layout_bag4_weight': 'bag4_weight',
+                'layout_bag5_weight': 'bag5_weight'
+            };
 
             const limits = {
                 maxTOW: 3175,
@@ -555,31 +631,43 @@
 
             // --- EVENT LISTENERS ---
             function addEventListeners() {
-                const inputs = document.querySelectorAll('input[type="number"], input[type="text"], select');
-                inputs.forEach(input => {
+                const allInputs = document.querySelectorAll('input[type="number"], input[type="text"], select');
+                allInputs.forEach(input => {
                     if (input.type === 'number') {
-                        // Add focus/blur logic for number inputs
                         input.addEventListener('focus', function() {
-                            // Store the current value as a data attribute before clearing
                             this.setAttribute('data-original-value', this.value);
                             this.value = '';
                         });
 
                         input.addEventListener('blur', function() {
-                            // If the input is empty after blurring, restore the original value
                             if (this.value.trim() === '') {
                                 this.value = this.getAttribute('data-original-value');
                             }
-                            // Always recalculate on blur to catch changes
                             calculateAll();
                         });
                     }
                     
-                    // Add real-time calculation for all input types
                     input.addEventListener('input', calculateAll);
-                    // Add change event for selects and other inputs that need it
                     input.addEventListener('change', calculateAll);
                 });
+
+                // Two-way binding for layout and table
+                for (const [layoutId, tableId] of Object.entries(layoutMap)) {
+                    const layoutInput = document.getElementById(layoutId);
+                    const tableInput = document.getElementById(tableId);
+
+                    layoutInput.addEventListener('input', () => {
+                        if (document.activeElement === layoutInput) {
+                           tableInput.value = layoutInput.value;
+                        }
+                    });
+
+                    tableInput.addEventListener('input', () => {
+                         if (document.activeElement === tableInput) {
+                           layoutInput.value = tableInput.value;
+                        }
+                    });
+                }
             }
 
 
